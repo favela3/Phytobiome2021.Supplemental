@@ -1,2 +1,2 @@
 # TeosinteMicrobiome.Phyto2021
-Supplemental materials 
+Supplemental Materials for Maize Teosinte Greenhouse Microbiome comparison. 
