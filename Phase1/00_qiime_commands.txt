@@ -8,6 +8,9 @@ align_seqs.py -i rep_seq.fasta
 
 assign_taxonomy.py -i rep_seq.fasta
 
+#Silva taxonomy 
+assign_taxonomy.py -i rep_seq.fasta -t 	../SILVAdb/SILVA_128_QIIME_release/taxonomy/taxonomy_all/97/taxonomy_7_levels.txt -r ../SILVAdb/SILVA_128_QIIME_release/rep_set/rep_set_all/97/97_otus.fasta -m uclust -o Assign_SILVA
+
 
 #make OTU table, update name of input file to be the output file from assign_taxonomy.py
 make_otu_table.py -i qiime_otu_clusters.txt -t uclust_assigned_taxonomy/rep_seq_tax_assignments.txt -e pynast_aligned/rep_seq_failures.fasta -o otu_table.biom
