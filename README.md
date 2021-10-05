@@ -11,13 +11,13 @@ Raw sample data is present at BioProject: [PRJNA753114](https://urldefense.com/v
 # Tools Used 
 Phase 1 describes bioinfromatics and phase 2 describes statisitical analysis. 
 ------------------
-Phase 1 - Flash for merging R1, R2 fastq - Link
-Phase 1 - Fastx toolkit for quality filtering - Link 
-Phase 1 - Usearch for OTU construction - Link
-Phase 1 - QIIME for OTU Table - Link
-Phase 2 - Analysis in R and R Studio - Link 
-Phase 2 - Phyloseq for visualization of amplicon - Link 
-Phase 2 - ggplot2 for figure plotting - Link 
-Phase 2 - Vegan for multivariate stats - Link 
-Phase 2 - DESEQ2 for Differential Abundance - Link
-Phase 2 - ASREML-R for Univariate stats- Link
+Phase 1 - Flash for merging R1, R2 fastq - [Link](https://ccb.jhu.edu/software/FLASH/) <br/>
+Phase 1 - Fastx toolkit for quality filtering - [Link](http://hannonlab.cshl.edu/fastx_toolkit/) <br/>
+Phase 1 - Usearch for OTU construction - [Link](https://www.drive5.com/usearch/) <br/>
+Phase 1 - QIIME for OTU Table - [Link](http://qiime.org/) <br/>
+Phase 2 - Analysis in R and R Studio - [Link](https://www.rstudio.com/) <br/>
+Phase 2 - Phyloseq for visualization of amplicon - [Link](https://joey711.github.io/phyloseq/) <br/>
+Phase 2 - ggplot2 for figure plotting - [Link](https://ggplot2.tidyverse.org/) <br/>
+Phase 2 - Vegan for multivariate stats - [Link](https://rdrr.io/rforge/vegan/) <br/>
+Phase 2 - DESEQ2 for Differential Abundance - [Link](https://bioconductor.org/packages/release/bioc/html/DESeq2.html) <br/>
+Phase 2 - ASREML-R for Univariate stats- [Link](https://www.vsni.co.uk/software/asreml-r) <br/>
