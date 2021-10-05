@@ -9,7 +9,7 @@ Raw sample data is present at BioProject: [PRJNA753114](https://urldefense.com/v
 2. [Martin Bohn](https://cropsciences.illinois.edu/people/profile/mbohn)
 
 # Tools Used 
-Phase 1 describes bioinfromatics and phase 2 describes statisitical analysis. 
+Phase 1 describes bioinformatics and phase 2 describes statisitical analysis. 
 ------------------
 Phase 1 - Flash for merging R1, R2 fastq - [Link](https://ccb.jhu.edu/software/FLASH/) <br/>
 Phase 1 - Fastx toolkit for quality filtering - [Link](http://hannonlab.cshl.edu/fastx_toolkit/) <br/>
