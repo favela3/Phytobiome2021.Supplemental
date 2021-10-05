@@ -96,13 +96,11 @@ res.aov<-aov(NMDSAxis$MDS1 ~ MM.16S.treatment$Genotype)
 
 summary(res.aov)
 
-##NMDS1 0.7898/(0.7898+1.9912)==0.2839986
 # Df Sum Sq  Mean Sq F value   Pr(>F)    
 # MM.16S.treatment$Genotype  36 0.7898 0.021939    3.57 5.48e-10 ***
 #   Residuals                 324 1.9912 0.006146                     
 # ---
 #   Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
-##All MC NMDS1 1.123/(1.123+1.323)= 0.4591169
 # Df Sum Sq  Mean Sq F value Pr(>F)    
 # MM.16S.treatment$Genotype  36  1.123 0.031206   7.643 <2e-16 ***
 #   Residuals                 324  1.323 0.004083                   
@@ -129,7 +127,7 @@ summary(res.aov)
 MM.AITS <- read.csv("otu_table_ITS_MaizeGDB.csv")
 MM.AITS.treatment <- MM.AITS[,1:18]
 MM.AITS.spec <- MM.AITS[,19:1045]
-##Caluclating communtiy heretiability 
+##Caluclating communtiy H2 
 ord<-metaMDS(MM.AITS.spec)
 #plot(ord, type = "t")
 
@@ -1099,7 +1097,6 @@ dim(sigtab)
 ##The first number is the number of taxa that are present in the 
 #These are the taxa that were changing in response to treatment 
 
-##Grab code and ordering form other data set to make sure Im doing it right
 #write.csv(sigtab,'DESEQ2.0.01.Results.csv')
 
 theme_set(theme_bw())
@@ -1116,7 +1113,7 @@ x= tapply(sigtab$log2FoldChange, sigtab$Order, function(x) max(x))
 x = sort(x, TRUE)
 sigtab$Order = factor(as.character(sigtab$Order), levels=names(x))
 
-##Plot ##Need to remove the NA from files 
+##Plot 
 ##Manuscript Figure 2====
 ggplot(sigtab, aes(x=Order, y=log2FoldChange, color=Phylum)) + geom_point(size=6) + 
   theme(axis.text.x = element_text(angle = -90, hjust = 0, vjust=0.5))
@@ -1134,25 +1131,26 @@ ggplot(sigtab, aes(x=Genus, y=log2FoldChange, color=Phylum)) + geom_point(size=6
   theme(axis.text.x = element_text(angle = -90, hjust = 0, vjust=0.5))
 
 #######
-##Here Is the code that I should use to 
+##Here Is the code 
 MM15.Average = merge_samples(TvM.OTU, "Family", fun = mean) #averages each OTU in all samples belonging to each habitat class
 sample_data(MM15.Average)$Family <- levels(sample_data(TvM.OTU)$Family)
 #relative
 MM15.Average = transform_sample_counts(MM15.Average, function(x) 100 * x/sum(x) )
 
-##Here we will be filterign out these enriched taxa for stack plot
+##Here we will be filter out these enriched taxa for stack plot
 TopNOTUs<-c(rownames(sigtab))
 
-#Here we are getting the enriched list of taxa to subset them- them 
+#Here we are getting the enriched list of taxa to subset them 
 MM20156x610 = prune_taxa(TopNOTUs, MM15.Average)
-##This commented out code will be used if I want to plot the Raw abudannce.
+                                       
+##This commented out code will be used if I want to plot the abundance
 #MM20156x610 = prune_taxa(TopNOTUs, TvM.OTU)
 
 MM20156x610 = subset_taxa(MM20156x610, Order != "NA")
 
 
-##I orginally plotted them in abudnace now I will plot them in Relvativee abudnance
-##Here I am pulling the signifcant OTUS and using them in a stack plot
+##I orginally plotted them in abudnace now I will plot them in relative abundance
+##Here I am pulling the sig. OTUs and using them in a stack plot
 plot_bar(MM20156x610, "sample_Family", fill = "Class", facet_grid = ~Phylum)+
   geom_bar(stat="identity")+
   scale_fill_hue()+
@@ -1169,7 +1167,7 @@ plot_bar(MM20156x610, "sample_Family", fill = "Class", facet_grid = ~Phylum)+
   theme_bw()+theme(strip.text.x = element_text(angle=90),axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))+scale_fill_grey()
 
 
-##Figure alterations Angela requested 
+##Figure alterations requested 
 #MM20156x6_Man = subset_taxa(MM20156x610, Phylum != "Armatimonadetes"|Phylum != "Chloroflexi"|Phylum != "Crenarchaeota"|Phylum != "Fibrobacteres" |Phylum != "Gemmatimonadetes"|Phylum != "Planctomycetes")
 MM20156x6_Man = subset_taxa(MM20156x610, Phylum == "Acidobacteria"|Phylum == "Actinobacteria"|Phylum == "Bacteroidetes"|Phylum == "Firmicutes" |Phylum == "Proteobacteria"|Phylum == "Verrucomicrobia")
 
@@ -1189,11 +1187,11 @@ plot_bar(MM20156x6_Man, "sample_Family", fill = "Class", facet_grid = ~Phylum)+
 
 
 
-##Major changes in the proteobacteria- these may disagree with the field findings but Im not super sure.
-##Im going to pull out the fermicutes as those seem like an interesting grouping
+##Major changes in the proteobacteria
+##Im going to pull out the firmicutes as those seem like an interesting grouping
 ##Teosinte showed increases in Firmicutes, Verrucomicrobia, and Actinobacteria
 ##Inbred showed increases in Proteobacteria, Bacteroidetes 
-##The rest were really minor in changes in the commuminty 
+##The rest were  minor in changes in the community 
 
 get_taxa_unique(MM20156x610, "Phylum")
 get_taxa_unique(MM20156x610, "Order")
@@ -1599,7 +1597,7 @@ TopNOTUs<-c(rownames(sigtab))
 
 #Here we are getting the enriched list of taxa to subset them
 TvM.AMOA.OTU.2 = prune_taxa(TopNOTUs, TvM.AMOA.OTU)
-##This commented out code will be used if I want to plot the Raw abudannce.
+##This commented out code will be used if I want to plot the abudannce.
 #MM20156x610 = prune_taxa(TopNOTUs, TvM.OTU)
 
 ##Supplemental Figure results Bac amoA
