@@ -37,82 +37,8 @@ biom summarize-table -i new_otu_table_full_taxa.biom -o otu_table_full_taxa_stat
 
 
 #rarify to desired sequence depth and update command, change read depth -d as appropriate
-single_rarefaction.py -i new_otu_table_full_taxa.biom -o otu_table_rarefied_788.biom -d 788
+single_rarefaction.py -i new_otu_table_full_taxa.biom -o 16S_STATs_table_rare34000.biom -d 34000
 
 
-biom convert -i otu_table_rarefied_788.biom -o otu_table_rarefied_788.txt --to-tsv --table-type="OTU table"   --header-key taxonomy
-
-## -b is now replaced by this --to-tsv --table-type="OTU table"  
-
-##summarize_taxa_through_plots.py A workflow script for performing taxonomy summaries and plots
-
-$ summarize_taxa_through_plots.py -i otu_table_rarefied_788.biom -o summary_plots/taxa_summary -m MM2015_MappingFile.txt
-
-##summarize_taxa_through_plots.py can also be used to summarize taxa based on sample classifications (as specified in the MappingFile)
-##Format: 
-
-summarize_taxa_through_plots.py -i otu_table_rarefied_15892.biom -o summary_plots/taxa_summary_by_type -m MM2015_MappingFile.txt -c Type
- 
-##  Alpha Diversity 
-#in alpha first you must run
-$ echo "alpha_diversity:metrics shannon,PD_whole_tree,chao1,observed_species" > alpha_params.txt
-
-$ alpha_rarefaction.py -i otu_table_rarefied_15892.biom -m MM2015_MappingFile.txt -o alpha_div/ -p alpha_params.txt -t filtered_alignment/rep_seq_aligned_pfiltered.tre -e 15892
-
-## Beta Diversity 
-
-beta_diversity_through_plots.py -i otu_table_rarefied_15892.biom -m MM2015_MappingFile.txt -o beta_div/ -t filtered_alignment/rep_seq_aligned_pfiltered.tre -e 15892
-
-##Core Diversity analysis 
-
-core_diversity_analyses.py -i otu_table_rarefied_788.biom -m MM2015_MappingFile.txt -t filtered_alignment/rep_seq_aligned_pfiltered.tre  -o core_diversity -e 15892 -c Genotype
-
-
-##Heat Mapp
-
-make_otu_heatmap.py -i otu_table_rarefied_788.biom -o OTU_Heatmap/
-
-
-make_otu_network.py -m MM2015_MappingFile.txt -i otu_table_rarefied_15892.biom -o otus/OTU_Network
-
-
-
-
-#Core Microbiome 
-
-compute_core_microbiome.py -i otu_table_rarefied_15892.biom -o CoreMicrobiome/otu_Inbred --mapping_fp MM2015_MappingFile.txt --valid_states 'Type:Inbred'
-compute_core_microbiome.py -i otu_table_rarefied_15892.biom -o CoreMicrobiome/otu_Teosinte --mapping_fp MM2015_MappingFile.txt --valid_states 'Type:Teosinte'
-compute_core_microbiome.py -i otu_table_rarefied_15892.biom -o CoreMicrobiome/otu_Sorghum --mapping_fp MM2015_MappingFile.txt --valid_states 'Type:Sorghum'
-compute_core_microbiome.py -i otu_table_rarefied_15892.biom -o CoreMicrobiome/otu_Hybrid --mapping_fp MM2015_MappingFile.txt --valid_states 'Type:Hybrid'
-
-#significant OTUS
-group_significance.py -i otu_table_rarefied_15892.biom -m MM2015_MappingFile.txt -s g_test -c Genotype -o single_g_test.txt
-
-
-#Network Analysis of Microbial Data 
-
-## Run network analysis then remove all members that do are not part of the desired data set 
-
-make_otu_network.py -i otu_table_rarefied_15892.biom -m MM2015_MappingFile.txt -o otu_network
-
-
-make_otu_network.py -i otu_table_rarefied_165.biom -m MM2015_MappingFile.txt -o otu_network
-
-
-make_otu_network.py -i Genotype_otu_table_L6.biom -m Genotype_map.txt -o otu_network
-
-make_otu_network.py -i Type_otu_table_L6.biom -m Type_map.txt -o otu_network
-
-### Coversion from Txt to file
-
-biom convert -i otu_table_rarefied_1%.txt -o nrfA1%.biom --table-type="OTU table" --to-tsv
-
-make_otu_network.py -i nrfA1%.biom -m nrfA_factors.txt -o otu_network2
-
-make_otu_network.py -i nrfA1%.biom -m MM2015_MappingFile.txt -o otu_network
-
-
-biom convert -i closed_otu_table.biom  -o closed_otu_table.txt --to-tsv  --header-key taxonomy
-
-ß
+biom convert -i 16S_STATs_table_rare34000.biom -o 16S_STATs_table_rare34000.txt --to-tsv --table-type="OTU table"   --header-key taxonomy
 
