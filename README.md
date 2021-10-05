@@ -21,4 +21,4 @@ Phase 2 - ggplot2 for figure plotting - [Link](https://ggplot2.tidyverse.org/) <
 Phase 2 - Vegan for multivariate stats - [Link](https://rdrr.io/rforge/vegan/) <br/>
 Phase 2 - DESEQ2 for Differential Abundance - [Link](https://bioconductor.org/packages/release/bioc/html/DESeq2.html) <br/>
 Phase 2 - ASREML-R for Univariate stats - [Link](https://www.vsni.co.uk/software/asreml-r) <br/>
-Phase 2 - Tidyverse for Dataformating - [Link](https://www.tidyverse.org/)
+Phase 2 - Tidyverse for Data Formatting - [Link](https://www.tidyverse.org/)
