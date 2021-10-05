@@ -162,7 +162,7 @@ TvM.ITS=subset(MM.AITS,Genotype == "A632" |Genotype == "B73"
                      | Genotype == "PI566674"
                      | Genotype == "PI566677"
                      | Genotype == "PI566680"
-                     | Genotype == "Bulk" )
+                     #| Genotype == "Bulk" )
 
 
 ##Subsetting the values of interest 
@@ -570,7 +570,7 @@ TvM.nifH=subset(MM.nifH, Genotype == "A632" |Genotype == "B73"
                 | Genotype == "PI566674"
                 | Genotype == "PI566677"
                 | Genotype == "PI566680"
-                | Genotype == "Bulk" )
+                #| Genotype == "Bulk" )
 ##Subsetting the values of interest 
 MM.nifH.treatment <- TvM.nifH[,1:13]
 MM.nifH.spec <- TvM.nifH[,14:14926]
@@ -1021,7 +1021,7 @@ TvM.OTU<- subset_samples(OTU16S,Genotype == "A632" |Genotype == "B73"
                | Genotype == "PI566674"
                | Genotype == "PI566677"
                | Genotype == "PI566680"
-               | Genotype == "Bulk" 
+               #| Genotype == "Bulk" 
                )
 
 TvM.OTU<-transform_sample_counts(TvM.OTU, log1p)
@@ -1597,7 +1597,7 @@ dim(sigtab)
 
 TopNOTUs<-c(rownames(sigtab))
 
-#Here we are getting the enriched list of taxa to subset them- them 
+#Here we are getting the enriched list of taxa to subset them
 TvM.AMOA.OTU.2 = prune_taxa(TopNOTUs, TvM.AMOA.OTU)
 ##This commented out code will be used if I want to plot the Raw abudannce.
 #MM20156x610 = prune_taxa(TopNOTUs, TvM.OTU)
@@ -1772,54 +1772,8 @@ adonis(FGD.spec ~ Type, FGD.treatment)
 # ---
 #   Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
-##I need to filter out this data
-AbuDivSoy<-read.csv("MM2015.Diversity.QPCRAbundance.Soy.csv")
 
 
-Fuction.TvM<- subset(AbuDivSoy,Genotype == "A632" |Genotype == "B73"
-                             | Genotype == "LH82"
-                             | Genotype == "PH207"
-                             | Genotype == "Mo17"
-                             | Genotype == "Pa91"
-                             | Genotype == "Ames21786"
-                             | Genotype == "Ames21789"
-                             | Genotype == "Ames21809"
-                             | Genotype == "PI566674"
-                             | Genotype == "PI566677"
-                             | Genotype == "PI566680"
-                             #| Genotype == "Bulk" 
-                             )
-
-Fuction.TvM
-FGD.treatment <- Fuction.TvM[,1:2]
-FGD.spec <- Fuction.TvM[,5:10]
-
-FGD.spec.omit<-na.omit(FGD.spec)
-#Genotype comparison on th microibome
-adonis(FGD.spec ~ Type, FGD.treatment)
-
-##This is good- I think we have figured it out
-# Df SumsOfSqs  MeanSqs F.Model      R2 Pr(>F)   
-# Type       1  0.100267 0.100267  16.415 0.62143  0.002 **
-#   Residuals 10  0.061081 0.006108         0.37857          
-# Total     11  0.161348                  1.00000          
-# ---
-#   Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
-
-##just 
-ggplot(Fuction.TvM, aes(x=Type, y=DryMass)) + 
-  geom_boxplot()
-
-##This is the soy bean dry mass-
-FunSoyGene<- read.csv("MM2015.Functional.Gene.Samples.withsoy.csv")
-
-ggplot(FunSoyGene, aes(x=Genotype, y=Dmass)) + 
-  geom_boxplot()+ theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
-
-GeneAbs<-na.omit(FunSoyGene[,5:13])
-cor(GeneAbs)
-
-theme(theme_classic()
 #Manuscript Figure S5####
 ggplot(FunctionGeneAverages, aes(x=Average.Functional.Gene.Abundance, y=Functional.Gene.Diversity)) +
   geom_smooth(method=lm, color="black")+
@@ -1924,8 +1878,6 @@ cor.test(FunctionGeneAverages$nifH.qpcr, FunctionGeneAverages$nifH)
 # sample estimates:
 #   cor 
 # 0.4477685 
-
-
 
 cor()
 
