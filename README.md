@@ -1,5 +1,5 @@
 # About Project
-Supplemental seqeunce processing and R statistical analysis for phytobiomes publication which compares the microbiome of 12 Zea genotypes, 6 modern maize and 6 wild teosinte. 
+Supplemental sequence processing and R statistical analysis for phytobiomes publication which compares the microbiome of 12 Zea genotypes, 6 modern maize, and 6 wild teosinte. Manuscript text [Link](https://apsjournals.apsnet.org/doi/full/10.1094/PBIOMES-08-21-0049-R)
 
 # Sample Data 
 Raw sample data is present at BioProject: [PRJNA753114](https://urldefense.com/v3/__https://dataview.ncbi.nlm.nih.gov/object/PRJNA753114?reviewer=76e2fve465rj6t7oku2e30ihf__;!!DZ3fjg!pmcDWRcgjR62Vx5fJu8tTdBCgGB006RZu8Y-cUtWZ_qU36IiJYFlDQlP21xu5klxkSw$)
